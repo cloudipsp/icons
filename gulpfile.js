@@ -20,8 +20,13 @@ gulp.task('svg2png:128', function () {
     return convertToPng('src/**/*.svg',128);
 });
 
+gulp.task('svgcopy', function () {
+    return gulp.src('src/**/*.svg').pipe(gulp.dest('dist/svg'));
+});
+
+
 gulp.task('clean', function() {
     return del.sync('dist');
 });
 
-gulp.task('default', ['clean','svg2png:32','svg2png:64','svg2png:128']);
+gulp.task('default', ['clean','svgcopy','svg2png:32','svg2png:64','svg2png:128']);
