@@ -1,0 +1,12 @@
+{
+  "name": "fondy-icons",
+  "title": "Fondy Icons Pack",
+  "description": "Fondy payment methods icons",
+  "version": "1.0.0",
+  "homepage": "https://fondy.eu",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cloudipsp/icons.git"
+  }
+}
