@@ -35,8 +35,16 @@ gulp.task('svgcopy', function () {
 });
 
 
-gulp.task('clean', function() {
-    return del.sync('dist');
+gulp.task('clean', function(cb) {
+    del.sync('dist');
+    cb();
 });
 
-gulp.task('default', ['clean','svgcopy','svg2png:32','svg2png:64','svg2png:128']);
+gulp.task('default',
+  gulp.series(
+    'clean',
+    'svgcopy',
+    gulp.parallel('svg2png:32','svg2png:64','svg2png:128')
+  ),
+  function() {}
+);
