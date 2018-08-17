@@ -45,6 +45,5 @@ gulp.task('default',
     'clean',
     'svgcopy',
     gulp.parallel('svg2png:32','svg2png:64','svg2png:128')
-  ),
-  function() {}
+  )
 );
