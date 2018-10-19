@@ -5,6 +5,10 @@
   "version": "1.0.3",
   "homepage": "https://fondy.eu",
   "license": "MIT",
+  "scripts": {
+    "build": "npm install && ./node_modules/gulp/bin/gulp.js",
+    "prepublishOnly": "npm install && ./node_modules/gulp/bin/gulp.js"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/cloudipsp/icons.git"

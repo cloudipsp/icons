@@ -34,7 +34,6 @@ gulp.task('svgcopy', function () {
       .pipe(gulp.dest('dist/svg'));
 });
 
-
 gulp.task('clean', function(cb) {
     del.sync('dist');
     cb();
