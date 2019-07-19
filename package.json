@@ -16,7 +16,9 @@
     "type": "git",
     "url": "git://github.com/cloudipsp/icons.git"
   },
-  "dependencies": {},
+  "dependencies": {
+    "flag-icon-css": "^3.3.0"
+  },
   "devDependencies": {
     "del": "^3.0.0",
     "gulp": "^4.0.2",
