@@ -9,6 +9,19 @@ var convertToPng = function(path,size){
         .pipe(gulp.dest('dist/png/'.concat(size)));
 };
 
+var compressSvg = function(deps,out){
+  return gulp.src(deps)
+    .pipe(imagemin([
+      imagemin.svgo({
+        plugins: [
+          // {removeViewBox: true},
+          // {cleanupIDs: false}
+        ]
+      })
+    ]))
+    .pipe(gulp.dest(out));
+};
+
 gulp.task('svg2png:32', function () {
     return convertToPng('src/**/*.svg',32);
 });
@@ -22,16 +35,11 @@ gulp.task('svg2png:128', function () {
 });
 
 gulp.task('svgcopy', function () {
-    return gulp.src('src/**/*.svg')
-      .pipe(imagemin([
-        imagemin.svgo({
-          plugins: [
-            // {removeViewBox: true},
-            // {cleanupIDs: false}
-          ]
-        })
-      ]))
-      .pipe(gulp.dest('dist/svg'));
+    return compressSvg('src/**/*.svg', 'dist/svg')
+});
+
+gulp.task('flags', function () {
+  return compressSvg('node_modules/flag-icon-css/flags/4x3/*.svg', 'dist/svg/flags')
 });
 
 gulp.task('clean', function(cb) {
@@ -42,7 +50,12 @@ gulp.task('clean', function(cb) {
 gulp.task('default',
   gulp.series(
     'clean',
-    'svgcopy',
-    gulp.parallel('svg2png:32','svg2png:64','svg2png:128')
+    gulp.parallel(
+      'svgcopy',
+      'flags',
+      'svg2png:32',
+      'svg2png:64',
+      'svg2png:128'
+    )
   )
 );
