@@ -2,6 +2,8 @@ var gulp     = require('gulp');
 var del      = require('del');
 var svg2png = require('gulp-svg2png');
 var imagemin = require('gulp-imagemin');
+var fs = require('fs');
+var argv = require('minimist')(process.argv.slice(2));
 
 var convertToPng = function(path,size){
     return gulp.src(path)
@@ -42,15 +44,23 @@ gulp.task('flags', function () {
   return compressSvg('node_modules/flag-icon-css/flags/4x3/*.svg', 'dist/svg/flags')
 });
 
-gulp.task('clean', function(cb) {
-    del.sync('dist');
-    cb();
+gulp.task('version', function (done) {
+  fs.writeFileSync('dist/version.txt', argv.version);
+  fs.writeFileSync('dist/build-date.txt', new Date());
+
+  done();
+});
+
+gulp.task('clean', function(done) {
+  del.sync(['dist/*']);
+  done();
 });
 
 gulp.task('default',
   gulp.series(
     'clean',
     gulp.parallel(
+      'version',
       'svgcopy',
       'flags',
       'svg2png:32',
