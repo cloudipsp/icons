@@ -6,7 +6,7 @@
   "homepage": "https://fondy.eu",
   "license": "MIT",
   "scripts": {
-    "build": "./node_modules/.bin/gulp",
+    "build": "npm install && ./node_modules/.bin/gulp",
     "release": "./scripts/release.sh"
   },
   "files": [
@@ -17,13 +17,13 @@
     "url": "git://github.com/cloudipsp/icons.git"
   },
   "dependencies": {
-    "flag-icon-css": "^3.3.0"
+    "flag-icon-css": "^3.4.6"
   },
   "devDependencies": {
     "del": "^3.0.0",
     "gulp": "^4.0.2",
-    "gulp-imagemin": "^6.0.0",
+    "gulp-imagemin": "^6.2.0",
     "gulp-svg2png": "^2.0.2",
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.5"
   }
 }
