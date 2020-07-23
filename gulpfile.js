@@ -40,6 +40,10 @@ gulp.task('svgcopy', function () {
     return compressSvg('src/**/*.svg', 'dist/svg')
 });
 
+gulp.task('jsoncopy', function () {
+  return gulp.src('json/**/*.json').pipe(gulp.dest('dist/json'))
+});
+
 gulp.task('flags', function () {
   return compressSvg('node_modules/flag-icon-css/flags/4x3/*.svg', 'dist/svg/flags')
 });
@@ -62,6 +66,7 @@ gulp.task('default',
     gulp.parallel(
       'version',
       'svgcopy',
+      'jsoncopy',
       'flags',
       'svg2png:32',
       'svg2png:64',
