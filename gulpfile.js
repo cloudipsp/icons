@@ -1,17 +1,19 @@
-var gulp     = require('gulp');
-var del      = require('del');
+var gulp = require('gulp');
+var del = require('del');
 var svg2png = require('gulp-svg2png');
 var imagemin = require('gulp-imagemin');
 var fs = require('fs');
 var argv = require('minimist')(process.argv.slice(2));
+var touch = require('gulp-touch-fd');
 
-var convertToPng = function(path,size){
-    return gulp.src(path)
-        .pipe(svg2png({ width: size, height: size }))
-        .pipe(gulp.dest('dist/png/'.concat(size)));
+var convertToPng = function (path, size) {
+  return gulp.src(path)
+    .pipe(svg2png({width: size, height: size}))
+    .pipe(gulp.dest('dist/png/'.concat(size)))
+    .pipe(touch());
 };
 
-var compressSvg = function(deps,out){
+var compressSvg = function (deps, out) {
   return gulp.src(deps)
     .pipe(imagemin([
       imagemin.svgo({
@@ -21,27 +23,30 @@ var compressSvg = function(deps,out){
         ]
       })
     ]))
-    .pipe(gulp.dest(out));
+    .pipe(gulp.dest(out))
+    .pipe(touch());
 };
 
 gulp.task('svg2png:32', function () {
-    return convertToPng('src/**/*.svg',32);
+  return convertToPng('src/**/*.svg', 32);
 });
 
 gulp.task('svg2png:64', function () {
-    return convertToPng('src/**/*.svg',64);
+  return convertToPng('src/**/*.svg', 64);
 });
 
 gulp.task('svg2png:128', function () {
-    return convertToPng('src/**/*.svg',128);
+  return convertToPng('src/**/*.svg', 128);
 });
 
 gulp.task('svgcopy', function () {
-    return compressSvg('src/**/*.svg', 'dist/svg')
+  return compressSvg('src/**/*.svg', 'dist/svg')
 });
 
 gulp.task('jsoncopy', function () {
-  return gulp.src('json/**/*.json').pipe(gulp.dest('dist/json'))
+  return gulp.src('json/**/*.json')
+    .pipe(gulp.dest('dist/json'))
+    .pipe(touch());
 });
 
 gulp.task('flags', function () {
@@ -55,7 +60,13 @@ gulp.task('version', function (done) {
   done();
 });
 
-gulp.task('clean', function(done) {
+gulp.task('version:touch', function () {
+  return gulp.src('dist/*.txt')
+    .pipe(gulp.dest('dist'))
+    .pipe(touch());
+});
+
+gulp.task('clean', function (done) {
   del.sync(['dist/*']);
   done();
 });
@@ -71,6 +82,7 @@ gulp.task('default',
       'svg2png:32',
       'svg2png:64',
       'svg2png:128'
-    )
+    ),
+    'version:touch'
   )
 );
