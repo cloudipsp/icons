@@ -48,6 +48,10 @@ gulp.task('favicon_copy', function () {
   return gulp.src('src/favicon/**/*').pipe(gulp.dest('dist/favicon'))
 });
 
+gulp.task('fonts_copy', function () {
+  return gulp.src('src/fonts/**/*').pipe(gulp.dest('dist/fonts'))
+});
+
 gulp.task('flags', function () {
   return compressSvg('node_modules/flag-icon-css/flags/4x3/*.svg', 'dist/svg/flags')
 });
@@ -72,6 +76,7 @@ gulp.task('default',
       'svg_copy',
       'json_copy',
       'favicon_copy',
+      'fonts_copy',
       'flags',
       'svg2png:32',
       'svg2png:64',
