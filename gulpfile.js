@@ -1,7 +1,7 @@
 var gulp     = require('gulp');
 var del      = require('del');
 var svg2png = require('gulp-svg2png');
-var imagemin = require('gulp-imagemin');
+var svgmin = require('gulp-svgmin');
 var fs = require('fs');
 var argv = require('minimist')(process.argv.slice(2));
 
@@ -13,14 +13,7 @@ var convertToPng = function(path,size){
 
 var compressSvg = function(deps,out){
   return gulp.src(deps)
-    .pipe(imagemin([
-      imagemin.svgo({
-        plugins: [
-          // {removeViewBox: true},
-          // {cleanupIDs: false}
-        ]
-      })
-    ]))
+    .pipe(svgmin())
     .pipe(gulp.dest(out));
 };
 
