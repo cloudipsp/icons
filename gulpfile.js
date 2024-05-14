@@ -51,7 +51,7 @@ gulp.task('flags', function () {
 
 gulp.task('version', function (done) {
   fs.writeFileSync('dist/version.txt', argv.version);
-  fs.writeFileSync('dist/build-date.txt', new Date());
+  fs.writeFileSync('dist/build-date.txt', new Date().toUTCString());
 
   done();
 });

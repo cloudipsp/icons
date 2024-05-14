@@ -21,12 +21,9 @@
   },
   "devDependencies": {
     "del": "^3.0.0",
-    "glob-parent": "^5.1.2",
-    "gulp": "^4.0.2",
+    "gulp": "^5.0.0",
     "gulp-svg2png": "^2.0.2",
-    "gulp-svgmin": "^4.0.1",
-    "lodash.template": "^4.5.0",
-    "minimist": "^1.2.5",
-    "trim-newlines": "^4.0.2"
+    "gulp-svgmin": "^4.1.0",
+    "minimist": "^1.2.8"
   }
 }
