@@ -34,15 +34,15 @@ gulp.task('svg_copy', function () {
 });
 
 gulp.task('json_copy', function () {
-  return gulp.src('src/json/**/*.json').pipe(gulp.dest('dist/json'))
+  return gulp.src('src/json/**/*.json', { encoding: false }).pipe(gulp.dest('dist/json'))
 });
 
 gulp.task('favicon_copy', function () {
-  return gulp.src('src/favicon/**/*').pipe(gulp.dest('dist/favicon'))
+  return gulp.src('src/favicon/**/*', { encoding: false }).pipe(gulp.dest('dist/favicon'))
 });
 
 gulp.task('fonts_copy', function () {
-  return gulp.src('src/fonts/**/*').pipe(gulp.dest('dist/fonts'))
+  return gulp.src('src/fonts/**/*', { encoding: false }).pipe(gulp.dest('dist/fonts'))
 });
 
 gulp.task('flags', function () {
