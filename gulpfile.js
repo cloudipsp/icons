@@ -6,6 +6,15 @@ const fs = require('fs');
 const argv = require('minimist')(process.argv.slice(2));
 
 const svgPath = 'src/**/*.svg';
+const allPath = [
+  'src/banks/*.svg',
+  'src/card/*.svg',
+  'src/crypto/*.svg',
+  'src/emoney/*.svg',
+  'src/installments/*.svg',
+  'src/loans/*.svg',
+  'src/wallets/*.svg',
+];
 
 const convertToPng = function (path, out, size) {
   return gulp
@@ -71,6 +80,32 @@ gulp.task('clean', function (done) {
   done();
 });
 
+gulp.task('all:svg', function () {
+  return compressSvg(allPath, 'dist/all/svg');
+});
+
+gulp.task('all:svg2png:32', function () {
+  return convertToPng(allPath, 'dist/all/png/', 32);
+});
+
+gulp.task('all:svg2png:64', function () {
+  return convertToPng(allPath, 'dist/all/png/', 64);
+});
+
+gulp.task('all:svg2png:128', function () {
+  return convertToPng(allPath, 'dist/all/png/', 128);
+});
+
+gulp.task(
+  'all',
+  gulp.parallel(
+    'all:svg',
+    'all:svg2png:32',
+    'all:svg2png:64',
+    'all:svg2png:128',
+  ),
+);
+
 gulp.task(
   'default',
   gulp.series(
@@ -85,6 +120,7 @@ gulp.task(
       'svg2png:32',
       'svg2png:64',
       'svg2png:128',
+      'all',
     ),
   ),
 );
