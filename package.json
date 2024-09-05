@@ -23,7 +23,7 @@
     "del": "^3.0.0",
     "gulp": "^5.0.0",
     "gulp-svg2png": "^2.0.2",
-    "gulp-svgmin": "^4.1.0",
-    "minimist": "^1.2.8"
+    "minimist": "^1.2.8",
+    "svgo": "^3.3.2"
   }
 }

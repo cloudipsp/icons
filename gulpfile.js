@@ -1,7 +1,8 @@
 const gulp = require('gulp');
 const del = require('del');
 const svg2png = require('gulp-svg2png');
-const svgmin = require('gulp-svgmin');
+const svgo = require('./gulp-svgo.js');
+const addViewBox = require('./svgo-add-viewbox.js');
 const fs = require('fs');
 const argv = require('minimist')(process.argv.slice(2));
 
@@ -16,6 +17,48 @@ const allPath = [
   'src/wallets/*.svg',
 ];
 
+const svgoConfig = {
+  plugins: [
+    {
+      name: 'preset-default',
+      params: {
+        overrides: {
+          cleanupIds: false,
+          inlineStyles: false,
+        },
+      },
+    },
+    'convertStyleToAttrs',
+    addViewBox,
+    {
+      name: 'removeAttrs',
+      params: {
+        attrs: ['svg_(version|x|y|id|fill|xml:space)', 'data-name', 'path_fill-rule_nonzero'],
+        elemSeparator: '_',
+      },
+    },
+    {
+      name: "cleanupIds",
+      params: {
+        minify: false,
+        force: true,
+      }
+    },
+    {
+      name: "inlineStyles",
+      params: {
+        onlyMatchedOnce: false,
+      }
+    },
+    {
+      name: "mergePaths",
+      params: {
+        force: true,
+      }
+    }
+  ],
+};
+
 const convertToPng = function (path, out, size) {
   return gulp
     .src(path)
@@ -24,7 +67,7 @@ const convertToPng = function (path, out, size) {
 };
 
 const compressSvg = function (path, out) {
-  return gulp.src(path).pipe(svgmin()).pipe(gulp.dest(out));
+  return gulp.src(path).pipe(svgo(svgoConfig)).pipe(gulp.dest(out));
 };
 
 gulp.task('svg2png:32', function () {
@@ -41,6 +84,17 @@ gulp.task('svg2png:128', function () {
 
 gulp.task('svg', function () {
   return compressSvg(svgPath, 'dist/svg');
+});
+
+gulp.task('svg:src', function () {
+  return gulp
+    .src(allPath)
+    .pipe(svgo(svgoConfig))
+    .pipe(
+      gulp.dest(function (file) {
+        return file.base;
+      }),
+    );
 });
 
 gulp.task('json', function () {

@@ -1,14 +1,1 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#BD2B30;}
-	.st1{fill:#FFFFFF;}
-</style>
-<polygon class="st0" points="69,64.1 449,64.1 449,444.1 69,444.1 69,64.1 "/>
-<polygon class="st1" points="123.3,118.4 394.7,118.4 394.7,281.2 286.1,281.2 286.1,389.8 123.3,389.8 123.3,118.4 "/>
-<polygon class="st0" points="177.6,172.7 231.9,172.7 231.9,226.9 177.6,226.9 177.6,172.7 "/>
-<polygon class="st0" points="177.6,281.2 231.9,281.2 231.9,335.5 177.6,335.5 177.6,281.2 "/>
-<polygon class="st0" points="286.1,172.7 340.4,172.7 340.4,226.9 286.1,226.9 286.1,172.7 "/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#bd2b30" d="M69 64.1h380v380H69z"/><path fill="#fff" d="M123.3 118.4h271.4v162.8H286.1v108.6H123.3z"/><path fill="#bd2b30" d="M177.6 172.7h54.3v54.2h-54.3zm0 108.5h54.3v54.3h-54.3zm108.5-108.5h54.3v54.2h-54.3z"/></svg>
