@@ -1,9 +1,9 @@
 const { Transform } = require('stream');
 const { optimize } = require('svgo');
 
-module.exports = function (options) {
-  const stream = new Transform({ objectMode: true });
-  stream._transform = function (file, encoding, cb) {
+module.exports = options => new Transform({
+  objectMode: true,
+  transform(file, encoding, cb) {
     if (file.isBuffer()) {
       const result = optimize(String(file.contents), options).data;
 
@@ -13,7 +13,5 @@ module.exports = function (options) {
     }
 
     return cb(null, file);
-  };
-
-  return stream;
-};
+  }
+});

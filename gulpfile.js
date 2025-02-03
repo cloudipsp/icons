@@ -1,6 +1,6 @@
 const gulp = require('gulp');
 const del = require('del');
-const svg2png = require('gulp-svg2png');
+const svg2png = require('./gulp-svg2png.js');
 const svgo = require('./gulp-svgo.js');
 const addViewBox = require('./svgo-add-viewbox.js');
 const fs = require('fs');
